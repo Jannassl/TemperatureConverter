@@ -1,9 +1,8 @@
 pipeline {
     agent any
-    environment {
-        PATH = "${env.PATH};C:\\Windows\\System32" // Update the PATH to include the directory of cmd.exe
+    tools {
+        maven 'Maven3' // This should match the name of the Maven installation in Jenkins
     }
-
     stages {
         stage('Checkout') {
             steps {
