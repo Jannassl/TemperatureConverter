@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/Jannassl/TemperatureConverter.git', credentialsId: 'GithubJannassl'
+                git branch: 'master', url: 'https://github.com/Jannassl/TemperatureConverter.git', credentialsId: 'JenkinsGithub'
             }
         }
         stage('Build') {
