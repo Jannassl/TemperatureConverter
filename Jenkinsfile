@@ -8,6 +8,12 @@ pipeline {
         DOCKER_IMAGE_TAG = 'latest'
     }
     stages {
+        stage('Cleanup Workspace') {
+            steps {
+                // Clean up the workspace
+                deleteDir()
+            }
+        }
         stage('Checkout') {
             steps {
                 // Checkout code from Git repository
