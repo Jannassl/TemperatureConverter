@@ -15,6 +15,7 @@
     </properties>
 
     <build>
+        <finalName>interconversions</finalName> <!-- Set the final name of the JAR file -->
         <plugins>
             <!-- Compiler Plugin -->
             <plugin>
