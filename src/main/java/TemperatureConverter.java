@@ -1,4 +1,3 @@
-
 public class TemperatureConverter {
 
     /**
@@ -39,4 +38,11 @@ public class TemperatureConverter {
         return (kelvin - 273.15) * 9.0 / 5.0 + 32;
     }
 
+    public static void main(String[] args) {
+        TemperatureConverter converter = new TemperatureConverter();
+        System.out.println("32°F to Celsius: " + converter.fahrenheitToCelsius(32));
+        System.out.println("0°C to Fahrenheit: " + converter.celsiusToFahrenheit(0));
+        System.out.println("300K to Celsius: " + kelvinToCel(300));
+        System.out.println("300K to Fahrenheit: " + kelvinToFah(300));
+    }
 }
