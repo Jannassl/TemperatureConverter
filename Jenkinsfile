@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    tools {
+        // Use the Docker tool configured in Jenkins
+        dockerTool 'docker'
+    }
+
     environment {
         // Define Docker Hub repository name
         DOCKERHUB_REPO = 'jannassl/tempconverter'
@@ -8,7 +13,6 @@ pipeline {
         DOCKER_IMAGE_TAG = 'latest'
     }
     stages {
-
         stage('Checkout') {
             steps {
                 // Checkout code from Git repository
