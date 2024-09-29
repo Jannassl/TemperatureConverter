@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         // Use the Docker tool configured in Jenkins
-        dockerTool 'docker'
+        dockerTool 'dockerDefault'
     }
 
     environment {
