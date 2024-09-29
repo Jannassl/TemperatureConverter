@@ -8,7 +8,14 @@ pipeline {
         DOCKER_IMAGE_TAG = 'latest'
     }
     stages {
-
+        stage('Set Docker Path') {
+            steps {
+                // Set Docker path
+                withEnv(['PATH+DOCKER=C:\\Program Files\\Docker\\Docker\\resources\\bin']) {
+                    sh 'docker --version'
+                }
+            }
+        }
         stage('Checkout') {
             steps {
                 // Checkout code from Git repository
