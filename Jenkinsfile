@@ -1,29 +1,32 @@
 pipeline {
     agent any
-    tools {
-        maven 'Maven3' // This should match the name of the Maven installation in Jenkins
+
+    environment {
+        // Define Docker Hub repository name
+        DOCKERHUB_REPO = 'jannassl/tempconverter'
+        // Define Docker image tag
+        DOCKER_IMAGE_TAG = 'latest'
     }
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/Jannassl/TemperatureConverter.git', credentialsId: 'JenkinsGithub'
+                // Checkout code from Git repository
+                git 'https://github.com/Jannassl/TemperatureConverter.git'
             }
         }
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                bat 'mvn clean install'
+                // Build Docker image
+                script {
+                    docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}")
+                }
             }
         }
-        stage('Test') {
+        stage('Push Docker Image to Docker Hub') {
             steps {
-                bat 'mvn test'
-            }
-            post {
-                success {
-                    // Publish JUnit test results
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    // Generate JaCoCo code coverage report
-                    jacoco(execPattern: '**/target/jacoco.exec')
+                // Push Docker image to Docker Hub
+                script {
+                    docker.image("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}").push()
                 }
             }
         }
